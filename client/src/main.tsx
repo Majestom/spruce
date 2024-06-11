@@ -13,6 +13,8 @@ export const Main = () => {
   const [currentPlayer, setCurrentPlayer] =
     useState<XorO>("X");
 
+  const [winStatus, setWinStatus] = useState<string>("");
+
   const checkForWin = (
     board: (XorO | undefined)[][],
     player: XorO
@@ -75,8 +77,7 @@ export const Main = () => {
     setBoard(newBoard);
 
     if (checkForWin(newBoard, currentPlayer)) {
-      alert(`Player ${currentPlayer} wins!`);
-      resetGame();
+      setWinStatus(`${currentPlayer} wins!`);
     } else {
       setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
     }
@@ -101,6 +102,21 @@ export const Main = () => {
             ))}
           </div>
         ))}
+      </div>
+      <div className="font-bold text-2xl">
+        {winStatus ? (
+          <div className="">
+            <p>{winStatus}</p>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={resetGame}
+            >
+              Reset Game
+            </button>
+          </div>
+        ) : (
+          `Current player: ${currentPlayer}`
+        )}
       </div>
     </div>
   );
