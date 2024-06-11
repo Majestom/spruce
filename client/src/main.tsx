@@ -13,8 +13,6 @@ export const Main = () => {
   const [currentPlayer, setCurrentPlayer] =
     useState<XorO>("X");
 
-  console.log("currentPlayer", currentPlayer);
-
   const checkForWin = (
     board: (XorO | undefined)[][],
     player: XorO
