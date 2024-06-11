@@ -68,6 +68,7 @@ export const Main = () => {
       [undefined, undefined, undefined],
     ]);
     setCurrentPlayer("X");
+    setWinStatus("");
   };
 
   const handleClick = (
@@ -82,6 +83,8 @@ export const Main = () => {
     );
 
     if (board[rowIndex][columnIndex] !== undefined) return;
+
+    if (winStatus !== "") return;
 
     const newBoard = [...board];
     newBoard[rowIndex][columnIndex] = currentPlayer;
