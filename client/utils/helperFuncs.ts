@@ -34,3 +34,16 @@ export const checkForWin = (
 
   return false;
 };
+
+export const checkForDraw = (
+  board: (XorO | undefined)[][]
+) => {
+  for (let row of board) {
+    for (let square of row) {
+      if (square === undefined) {
+        return false;
+      }
+    }
+  }
+  return true;
+};

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { XorO } from "./types";
-import { checkForWin } from "../utils/helperFuncs";
+import {
+  checkForWin,
+  checkForDraw,
+} from "../utils/helperFuncs";
 
 export const Main = () => {
   const [board, setBoard] = useState<
@@ -15,52 +18,6 @@ export const Main = () => {
     useState<XorO>("X");
 
   const [winStatus, setWinStatus] = useState<string>("");
-
-  // const checkForWin = (
-  //   board: (XorO | undefined)[][],
-  //   player: XorO
-  // ) => {
-  //   for (let i = 0; i < 3; i++) {
-  //     if (
-  //       board[i][0] === player &&
-  //       board[i][1] === player &&
-  //       board[i][2] === player
-  //     )
-  //       return true;
-  //     if (
-  //       board[0][i] === player &&
-  //       board[1][i] === player &&
-  //       board[2][i] === player
-  //     )
-  //       return true;
-  //   }
-
-  //   if (
-  //     board[0][0] === player &&
-  //     board[1][1] === player &&
-  //     board[2][2] === player
-  //   )
-  //     return true;
-  //   if (
-  //     board[0][2] === player &&
-  //     board[1][1] === player &&
-  //     board[2][0] === player
-  //   )
-  //     return true;
-
-  //   return false;
-  // };
-
-  const checkForDraw = (board: (XorO | undefined)[][]) => {
-    for (let row of board) {
-      for (let square of row) {
-        if (square === undefined) {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
 
   const resetGame = () => {
     setBoard([

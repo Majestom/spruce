@@ -1,4 +1,7 @@
-import { checkForWin } from "../../utils/helperFuncs";
+import {
+  checkForWin,
+  checkForDraw,
+} from "../../utils/helperFuncs";
 import { XorO } from "../types";
 
 describe("checkForWin", () => {
@@ -36,5 +39,34 @@ describe("checkForWin", () => {
       ["O", "X", "O"],
     ];
     expect(checkForWin(board, "X")).toBe(false);
+  });
+});
+
+describe("checkForDraw", () => {
+  it("should return true when all squares are filled and no player has won", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "O", "X"],
+      ["O", "X", "O"],
+      ["O", "X", "O"],
+    ];
+    expect(checkForDraw(board)).toBe(true);
+  });
+
+  it("should return false when there are empty squares", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "O", "X"],
+      ["O", undefined, "O"],
+      ["O", "X", "O"],
+    ];
+    expect(checkForDraw(board)).toBe(false);
+  });
+
+  it("should return false when a player has won", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "X", "X"],
+      ["O", undefined, "O"],
+      ["O", "X", "O"],
+    ];
+    expect(checkForDraw(board)).toBe(false);
   });
 });
