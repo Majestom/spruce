@@ -118,10 +118,10 @@ export const Main = () => {
       </div>
       <div className="font-bold text-2xl">
         {winStatus ? (
-          <div className="">
+          <div className="flex flex-col justify-center items-center">
             <p>{winStatus}</p>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 hover:bg-black-700 text-white font-bold py-2 px-4 rounded"
               onClick={resetGame}
             >
               Reset Game
