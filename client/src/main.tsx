@@ -50,6 +50,17 @@ export const Main = () => {
     return false;
   };
 
+  const checkForDraw = (board: (XorO | undefined)[][]) => {
+    for (let row of board) {
+      for (let square of row) {
+        if (square === undefined) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   const resetGame = () => {
     setBoard([
       [undefined, undefined, undefined],
@@ -78,6 +89,8 @@ export const Main = () => {
 
     if (checkForWin(newBoard, currentPlayer)) {
       setWinStatus(`${currentPlayer} wins!`);
+    } else if (checkForDraw(newBoard)) {
+      setWinStatus("Draw!");
     } else {
       setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
     }
