@@ -71,7 +71,8 @@ export const Main = () => {
   return (
     <div className="flex flex-col mt-10 items-center gap-10">
       <div className="font-bold text-2xl">Tic Tac Toe</div>
-      <div className="flex flex-col justify-center items-center font-bold text-2xl">
+      <div className="flex flex-col justify-center items-center font-bold text-2xl gap-4">
+        <p>Select square size:</p>
         <input
           className="border-2 border-black rounded"
           type="number"
