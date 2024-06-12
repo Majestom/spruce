@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { XorO } from "./types";
 import {
   checkForWin,
   checkForDraw,
 } from "../utils/helperFuncs";
 
+const generateBoard = (boardSize: number) => {
+  return Array.from({ length: boardSize }, () =>
+    Array.from({ length: boardSize }, () => undefined)
+  );
+};
+
 export const Main = () => {
-  const [board, setBoard] = useState<
-    (XorO | undefined)[][]
-  >([
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-  ]);
+  const [boardSize, setBoardSize] = useState<number>(3);
+  const initialBoard = generateBoard(boardSize);
+  const [board, setBoard] =
+    useState<(XorO | undefined)[][]>(initialBoard);
+
+  useEffect(() => {
+    setBoard(generateBoard(boardSize));
+  }, [boardSize]);
 
   const [currentPlayer, setCurrentPlayer] =
     useState<XorO>("X");
@@ -89,7 +96,18 @@ export const Main = () => {
             </button>
           </div>
         ) : (
-          `Current player: ${currentPlayer}`
+          <div className="flex flex-col justify-center items-center gap-4">
+            <p>{`Current player: ${currentPlayer}`}</p>
+            <p>{`Current board size: ${boardSize}`}</p>
+            <input
+              className="border-2 border-black rounded"
+              type="number"
+              value={boardSize}
+              onChange={(e) =>
+                setBoardSize(parseInt(e.target.value, 10))
+              }
+            />
+          </div>
         )}
       </div>
     </div>
