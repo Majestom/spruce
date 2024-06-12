@@ -47,8 +47,16 @@ export const Main = () => {
       button.getAttribute("data-column-index")
     );
 
-    if (board[rowIndex][columnIndex] !== undefined) return;
-
+    if (
+      isNaN(rowIndex) ||
+      rowIndex < 0 ||
+      rowIndex >= boardSize ||
+      isNaN(columnIndex) ||
+      columnIndex < 0 ||
+      columnIndex >= boardSize
+    ) {
+      return;
+    }
     if (winStatus !== "") return;
 
     const newBoard = [...board];
