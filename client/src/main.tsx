@@ -27,11 +27,7 @@ export const Main = () => {
   const [winStatus, setWinStatus] = useState<string>("");
 
   const resetGame = () => {
-    setBoard([
-      [undefined, undefined, undefined],
-      [undefined, undefined, undefined],
-      [undefined, undefined, undefined],
-    ]);
+    setBoard(generateBoard(boardSize));
     setCurrentPlayer("X");
     setWinStatus("");
   };
