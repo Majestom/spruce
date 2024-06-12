@@ -71,6 +71,16 @@ export const Main = () => {
   return (
     <div className="flex flex-col mt-10 items-center gap-10">
       <div className="font-bold text-2xl">Tic Tac Toe</div>
+      <div className="flex flex-col justify-center items-center font-bold text-2xl">
+        <input
+          className="border-2 border-black rounded"
+          type="number"
+          value={boardSize}
+          onChange={(e) =>
+            setBoardSize(parseInt(e.target.value, 10))
+          }
+        />
+      </div>
       <div className="flex flex-col gap-1">
         {board.map((row, i) => (
           <div key={i} className="flex gap-1">
@@ -103,14 +113,6 @@ export const Main = () => {
           <div className="flex flex-col justify-center items-center gap-4">
             <p>{`Current player: ${currentPlayer}`}</p>
             <p>{`Current board size: ${boardSize}`}</p>
-            <input
-              className="border-2 border-black rounded"
-              type="number"
-              value={boardSize}
-              onChange={(e) =>
-                setBoardSize(parseInt(e.target.value, 10))
-              }
-            />
           </div>
         )}
       </div>
