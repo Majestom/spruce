@@ -70,3 +70,29 @@ describe("checkForDraw", () => {
     expect(checkForDraw(board)).toBe(false);
   });
 });
+
+describe("varying board sizes", () => {
+  it("should return correct result for 2x2 board", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "O"],
+      ["O", "X"],
+    ];
+    expect(checkForDraw(board)).toBe(true);
+
+    board[1][1] = undefined;
+    expect(checkForDraw(board)).toBe(false);
+  });
+
+  it("should return correct result for 4x4 board", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "O", "X", "O"],
+      ["O", "X", "O", "X"],
+      ["X", "O", "X", "O"],
+      ["O", "X", "O", "X"],
+    ];
+    expect(checkForDraw(board)).toBe(true);
+
+    board[3][3] = undefined;
+    expect(checkForDraw(board)).toBe(false);
+  });
+});

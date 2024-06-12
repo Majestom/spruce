@@ -4,32 +4,22 @@ export const checkForWin = (
   board: (XorO | undefined)[][],
   player: XorO
 ) => {
-  for (let i = 0; i < 3; i++) {
-    if (
-      board[i][0] === player &&
-      board[i][1] === player &&
-      board[i][2] === player
-    )
-      return true;
-    if (
-      board[0][i] === player &&
-      board[1][i] === player &&
-      board[2][i] === player
-    )
+  const size = board.length;
+
+  for (let i = 0; i < size; i++) {
+    if (board[i].every((cell) => cell === player))
       return true;
   }
 
-  if (
-    board[0][0] === player &&
-    board[1][1] === player &&
-    board[2][2] === player
-  )
+  for (let i = 0; i < size; i++) {
+    if (board.every((row) => row[i] === player))
+      return true;
+  }
+
+  if (board.every((row, i) => row[i] === player))
     return true;
-  if (
-    board[0][2] === player &&
-    board[1][1] === player &&
-    board[2][0] === player
-  )
+
+  if (board.every((row, i) => row[size - i - 1] === player))
     return true;
 
   return false;
